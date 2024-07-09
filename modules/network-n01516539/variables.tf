@@ -1,9 +1,9 @@
-variable "resource_group_name" {
+variable "network_resource_group_name" {
   type        = string
   description = "Name of the Azure resource group"
 }
 
-variable "resource_group_location" {
+variable "network_resource_group_location" {
   type        = string
   description = "Azure region where resources will be deployed"
 }
@@ -15,6 +15,10 @@ variable "vnet" {
 variable "vnet_space" {
   description = "Address space for the virtual network"
   type        = list(string)
+}
+
+variable "subnet_id" {
+  description = "First subnet"
 }
 
 variable "subnet" {

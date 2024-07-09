@@ -1,15 +1,15 @@
 # Virtual network
 resource "azurerm_virtual_network" "network_vnet" {
-  name                = var.vnet
-  address_space       = var.vnet_space
-  resource_group_location = var.resource_group_location
-  resource_group_name = var.resource_group_name
+  name                    = var.vnet
+  address_space           = var.vnet_space
+  network_resource_group_location = var.network_resource_group_location
+  network_resource_group_name     = var.network_resource_group_name
 }
 
 # Subnet 
 resource "azurerm_subnet" "network_subnet" {
   name                 = var.subnet
-  resource_group_name  = var.resource_group_name
+   network_resource_group_name  = var.network_resource_group_name
   virtual_network_name = azurerm_virtual_network.network_vnet.name
   address_prefixes     = var.subnet_address_prefix
 }
@@ -17,9 +17,9 @@ resource "azurerm_subnet" "network_subnet" {
 
 # Network Security Group 
 resource "azurerm_network_security_group" "network_nsg" {
-  name                = var.nsg
-  resource_group_location       = var.resource_group_location
-  resource_group_name = var.resource_group_name
+  name                    = var.nsg
+  network_resource_group_location = var.network_resource_group_location
+   network_resource_group_name    = var. network_resource_group_name
 
   security_rule {
     name                       = "SSH"
@@ -67,7 +67,7 @@ resource "azurerm_network_security_group" "network_nsg" {
     destination_port_range     = "80"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
-  } 
+  }
 }
 
 
