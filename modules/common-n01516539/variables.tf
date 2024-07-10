@@ -3,7 +3,7 @@ variable "resource_group_name" {
   description = "Name of the Azure resource group"
 }
 
-variable "resource_group_location" {
+variable "location" {
   type        = string
   description = "Azure region where resources will be deployed"
 }
@@ -19,6 +19,21 @@ variable "recovery_services_vault_name" {
 }
 
 variable "storage_account_name" {
+  type        = string
+  description = "Name of the Standard Storage Account"
+}
+
+variable "vault_sku" {
+  type        = string
+  description = "Name of the Log Analytics Workspace"
+}
+
+variable "retention_log" {
+  type        = string
+  description = "Name of the Recovery Services Vault"
+}
+
+variable "log_sku" {
   type        = string
   description = "Name of the Standard Storage Account"
 }

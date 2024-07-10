@@ -1,4 +1,4 @@
-variable "resource_group_location" {
+variable "location" {
   description = "Location/region of the Azure resource group"
   type        = string
 }
@@ -13,23 +13,12 @@ variable "admin_username" {
   type        = string
 }
 
-
-variable "admin_password" {
-  description = "Admin username for the Linux VMs"
-  type        = string
+variable "public_key" {
+default  = "/home/N01516539/.ssh/id_rsa.pub"
 }
-
 
 variable "priv_key" {
-  description = "Path to the private SSH key file used for SSH authentication"
-  type        = string
-  default     = "./home/n01516539/.ssh/id_rsa"
-}
-
-variable "pub_key" {
-  description = "Path to the private SSH key file used for SSH authentication"
-  type        = string
-  default     = "./home/n01516539/.ssh/id_rsa"
+default     = "/home/N01516539/.ssh/id_rsa"
 }
 
 variable "vmlinux-names" {
@@ -38,10 +27,33 @@ variable "vmlinux-names" {
 }
 
 variable "subnet_id" {
-  type        = string
+  type = string
 }
 
 variable "linux_avs_name" {
+  type = string
+}
+
+variable "storage_account_name" {
+  description = "Admin username for the Linux VMs"
   type        = string
 }
-                                                                        
+
+variable "boot_diagnostics_storage_uri" {
+  description = "The URI of the storage account for boot diagnostics"
+  type        = string
+}
+
+
+variable "size" {
+  description = "The URI of the storage account for boot diagnostics"
+  type        = string
+}
+
+variable "os_disk" {
+  description = "Attributes of OS disk"
+  default = {
+    storage_account_type = "Standard_LRS"
+    caching              = "ReadWrite"
+  }
+}

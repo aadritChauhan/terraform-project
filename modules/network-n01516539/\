@@ -1,25 +1,24 @@
 # Virtual network
 resource "azurerm_virtual_network" "network_vnet" {
-  name                = var.vnet
-  address_space       = var.vnet_space
-  location            = var.location
-  resource_group_name = var.resource_group_name
+  name                            = var.vnet
+  address_space                   = var.vnet_space
+  location                        = var.location
+  resource_group_name             = var.resource_group_name
 }
 
 # Subnet 
 resource "azurerm_subnet" "network_subnet" {
-  name                 = var.subnet
-  resource_group_name  = var.resource_group_name
-  virtual_network_name = azurerm_virtual_network.network_vnet.name
-  address_prefixes     = var.subnet_address_prefix
+  name                        = var.subnet
+  resource_group_name = var.resource_group_name
+  virtual_network_name        = azurerm_virtual_network.network_vnet.name
+  address_prefixes            = var.subnet_address_prefix
 }
 
 
 # Network Security Group 
 resource "azurerm_network_security_group" "network_nsg" {
-  name                = var.nsg
-  location            = var.location
-  resource_group_name = var.resource_group_name
+  name                            = var.nsg
+  resource_group_name          = var.resource_group_name
 
   security_rule {
     name                       = "SSH"
@@ -74,9 +73,9 @@ resource "azurerm_network_security_group" "network_nsg" {
 
 # Subnet to NSG Associations
 resource "azurerm_subnet_network_security_group_association" "network_subnet_nsg_association" {
-  subnet_id                 = azurerm_subnet.network_subnet.id
-  network_security_group_id = azurerm_network_security_group.network_nsg.id
-
-
+  subnet_id                       = azurerm_subnet.network_subnet.id
+  network_security_group_id       = azurerm_network_security_group.network_nsg.id
+  location                        =var.location
+  resource_group_name            = var.resource_group_name
 }
 
