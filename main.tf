@@ -1,6 +1,6 @@
 module "resource_group" {
   source                  = "./modules/rgroup-n01516539"
-  resource_group_name     = "HumberID-n01516539"
+  resource_group_name     = "humber01516539"
   resource_group_location = "Canada Central"
   tags = {
     Assignment     = "CCGC-5502 Automation-Assignment"
@@ -51,15 +51,15 @@ module "vmlinux-n01516539" {
   source               = "./modules/vmlinux-n01516539"
   resource_group_name  = module.resource_group.resource_group_name
   location             = module.resource_group.resource_group_location
-  linux_avs_name       = "avset-N01516539"
-  storage_account_name = "storage-n01516539"
+  linux_avs_name       = "avset01516539"
+  storage_account_name = "storagen01516539"
   size                 = "Standard_DS1_v2"
 
   subnet_id      = module.network.subnet_id
   admin_username = "n01516539"
-  vmlinux-names = { "linux-vm1" = "vm1dns-n01516539",
-    "linux-vm2" = "vm2dns-n01516539",
-  "linux-vm3" = "vm3dns-n01516539" }
+  vmlinux-names = { "n6539linux-vm1" = "vm1dns",
+    "n6539linux-vm2" = "vm2dns",
+  "n6539linux-vm3" = "vm3dns" }
   boot_diagnostics_storage_uri = module.common-n01516539.boot_diagnostics_storage_uri
   tags = {
     Assignment     = "CCGC-5502 Automation-Assignment"
@@ -73,12 +73,12 @@ module "vmlinux-n01516539" {
 module "vmwindows-n01516539" {
   source                       = "./modules/vmwindows-n01516539"
   resource_group_name          = module.resource_group.resource_group_name
-  vm_name                      = "vm-n01516539-w"
+  vm_name                      = "vm6539-w"
   location                     = module.resource_group.resource_group_location
   windows_avs_name             = "avset-N01516539"
   vm_count                     = 1
   vm_size                      = "Standard_B1ms"
-  admin_username               = "aadi-n01516539"
+  admin_username               = "aadin01516539"
   admin_password               = "Humber@2024"
   subnet_id                    = module.network.subnet_id
   boot_diagnostics_storage_uri = module.common-n01516539.boot_diagnostics_storage_uri
@@ -126,7 +126,7 @@ module "database-n01516539" {
   source              = "./modules/database-n01516539"
   resource_group_name = module.resource_group.resource_group_name
   location            = module.resource_group.resource_group_location
-  db_username         = "aadi-db"
+  db_username         = "aadidb"
   db_password         = "Humber@2024"
   tags = {
     Assignment     = "CCGC-5502 Automation-Assignment"

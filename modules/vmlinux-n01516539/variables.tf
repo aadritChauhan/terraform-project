@@ -14,7 +14,7 @@ variable "admin_username" {
 }
 
 variable "public_key" {
-default  = "/home/N01516539/.ssh/id_rsa.pub"
+  default  = "/home/N01516539/.ssh/id_rsa.pub"
 }
 
 variable "priv_key" {
@@ -57,3 +57,10 @@ variable "os_disk" {
     caching              = "ReadWrite"
   }
 }
+
+variable "tags" {
+  description = "A map of tags to assign to the resource."
+  type        = map(string)
+  default     = {}
+}
+

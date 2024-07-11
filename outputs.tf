@@ -68,7 +68,18 @@ output "windows_private_ip" {
   value = module.vmwindows-n01516539.win_private_ip
 }
 
-output "windows_public_ip"
+output "windows_public_ip" {
   value = module.vmwindows-n01516539.win_public_ip
 }
 
+output "datadisk_names" {
+  value = module.datadisk-n01516539.datadisk_names
+}
+
+output "load_balancer_name" {
+  value = module.loadbalancer-n01516539.load_balancer_name
+}
+
+output "postgresql_server_name" {
+  value = module.database-n01516539.db_instance_name
+}

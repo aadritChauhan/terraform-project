@@ -48,9 +48,8 @@ os_disk {
   }
 
 admin_ssh_key {
-    username     = "${each.key}-osdisk"
+    username   = var.admin_username
     public_key = file(var.public_key)
-   
   }
 
   boot_diagnostics{
@@ -68,4 +67,25 @@ resource "azurerm_availability_set" "linux_avs" {
   platform_update_domain_count = 5
 
   managed = true
+}
+
+resource "azurerm_virtual_machine_extension" "AzureMonitorLinuxAgent" {
+  for_each             = var.vmlinux-names
+  name                 = "AzureMonitorLinuxxAgent"
+  virtual_machine_id   = azurerm_linux_virtual_machine.vmlinux-n01516539[each.key].id
+  publisher            = "Microsoft.Azure.Monitor"
+  type                 = "AzureMonitorLinuxAgent"
+  type_handler_version = "1.7"
+  
+}
+
+# Network Watcher Agent Linux
+resource "azurerm_virtual_machine_extension" "NetworkWatcherAgentLinux" {
+  for_each             = var.vmlinux-names
+  name                 = "NetworkWatcherAgentLinux"
+  virtual_machine_id   = azurerm_linux_virtual_machine.vmlinux-n01516539[each.key].id
+  publisher            = "Microsoft.Azure.NetworkWatcher"
+  type                 = "NetworkWatcherAgentLinux"
+  type_handler_version = "1.4"
+  
 }

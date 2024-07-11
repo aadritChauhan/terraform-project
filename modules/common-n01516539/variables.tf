@@ -37,3 +37,10 @@ variable "log_sku" {
   type        = string
   description = "Name of the Standard Storage Account"
 }
+
+variable "tags" {
+  description = "A map of tags to assign to the resource."
+  type        = map(string)
+  default     = {}
+}
+
